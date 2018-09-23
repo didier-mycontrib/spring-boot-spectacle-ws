@@ -1,0 +1,15 @@
+package org.mycontrib.generic.security.rest;
+
+/*
+ * classe abstraite FACULTATIVE d'un web service REST d'authentification
+ * avec sous classe concrète en version spring-mvc (@RestController)
+ * ou bien en version JAX-RS (pour serveur JEE avec CDI/EJB) .
+ */
+
+public abstract class AbstractRestAuthWS {
+	
+	//code très différent entre la version spring-mvc + spring-security
+	//et la version JAX-RS 2 (+CDI/EJB ou ...) 
+	
+    //rien d'intéressant à factoriser ici pour l'instant
+}

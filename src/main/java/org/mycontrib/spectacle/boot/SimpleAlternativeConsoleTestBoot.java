@@ -1,0 +1,53 @@
+package org.mycontrib.spectacle.boot;
+
+import org.mycontrib.spectacle.config.WithAutoConfiguration;
+import org.mycontrib.spectacle.service.PersonService;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+
+public class SimpleAlternativeConsoleTestBoot {
+	// le boot en mode console/text .
+	
+	
+	public static void main(String[] args) {
+		// on prépare la configuration de l'application en mode spring-boot
+		
+	     SpringApplication app = new SpringApplication(WithAutoConfiguration.class);
+	     
+		
+		
+		app.setWebEnvironment(false);
+		//app.setLogStartupInfo(false);
+		
+		//setting profile (context.getEnvironment().setActiveProfiles("...") ) :
+		//app.setAdditionalProfiles( "p1"); 
+		 
+		
+		// on lance l'application spring
+		ConfigurableApplicationContext context =  app.run(args);
+		
+		try {
+			
+		// appels specifiques:
+			PersonService customerService = context.getBean(PersonService.class);
+			System.out.println("person with id=1 : " + customerService.findPersonById(1L) );
+			
+		 
+		} catch (Exception ex) {
+			System.err.println("Exception : " + ex.getMessage());
+		}finally{
+		// fermeture du contexte Spring
+		context.close();
+		}
+	}
+
+	// méthode utilitaire - affiche les éléments d'une collection
+	private static <T> void display(String message, Iterable<T> elements) {
+		System.out.println(message);
+		for (T e : elements) {
+			System.out.println("\t"+e);
+		}
+	}
+
+}
