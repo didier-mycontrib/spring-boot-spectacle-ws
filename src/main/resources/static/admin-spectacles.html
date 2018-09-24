@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>admin-spectacles</title>
+	<script src="lib/jquery-3.3.1.min.js"></script>
+	<script src="js/my-jq-ajax-util.js"></script>
+	<script>
+	 $(function() {
+		 
+		 //appel ajax pour récupérer la liste des catégories et remplir le <select>
+		 $.ajax({
+	           type: "GET",
+	           url: "spectacle-api/public/spectacle/allCategories",
+	           contentType : "application/json",
+			   success: function (data,status,xhr) {
+	               if (data) {
+	            	   var categoryList = data;
+	            	   for(categoryIndex in categoryList){
+		            	   var category=categoryList[categoryIndex];
+		            	   	$('#selectCategory').append('<option value="'+ category.id +'">'+
+		            			 	  category.id + ' (' + category.title + ')</option>');
+	            	   }
+	            	   //$("#spanMsg").html(JSON.stringify(data));
+	               } 
+	           },
+	           error: function( jqXHR, textStatus, errorThrown ){
+	        	   $("#spanMsg").html( xhrStatusToErrorMessage(jqXHR)  ) ;
+	           }
+			   });//end $.ajax
+		 
+		 
+		 $('#btnAddSpectacle').on('click',function(){
+			 
+			 var spectacleAddition = { 
+					 spectacle : { title : null, 
+						           duration : null ,
+						           nbPlaces : null ,
+						           price : null ,
+						           description : null ,
+						           },
+					 categoryId : null
+			 }
+			 spectacleAddition.spectacle.title = $('#txtTitle').val();
+			 spectacleAddition.spectacle.duration = Number($('#txtDuration').val());
+			 spectacleAddition.spectacle.nbPlaces = Number($('#txtNbPlaces').val());
+			 spectacleAddition.spectacle.price = Number($('#txtPrice').val());
+			 spectacleAddition.spectacle.description = $('#txtDescription').val();
+			 spectacleAddition.categoryId = Number($('#selectCategory').val());
+			 
+		 
+			 setSecurityTokenForAjax();//js/my-jq-ajax-util.js
+			 $.ajax({
+		           type: "POST",
+		           url: "spectacle-api/spectacle",
+		           data : JSON.stringify(spectacleAddition),
+		           dataType : "json",
+		           contentType : "application/json",
+				   success: function (data,status,xhr) {
+		               if (data) {
+		            	 $("#spanMsg").html(JSON.stringify(data));
+		               } 
+		           },
+		           error: function( jqXHR, textStatus, errorThrown ){
+		        	   $("#spanMsg").html( xhrStatusToErrorMessage(jqXHR)  ) ;
+		           }
+				   });//end $.ajax
+			 
+		 });//end on click btnAddSpectacle
+	 });    
+	
+	</script>
+</head>
+<body>
+   <h3> ADMIN Spectacles (after login as administrator !!!)</h3>
+  
+   categorie : <select id="selectCategory"></select><br/>
+   titre:<input type='text' value="title xy" id="txtTitle"/> <br/>
+   duree:<input type='text' value="120" id="txtDuration"/> <br/>
+   nbPlaces:<input type='text' value="100" id="txtNbPlaces"/> <br/>
+   prix:<input type='text' value="25.0" id="txtPrice"/> <br/>
+   description:<input type='text' value="description qui va bien" id="txtDescription"/> <br/>
+   <input type='button' value="add new spectacle" id="btnAddSpectacle"/> <br/>
+   
+   
+   <span id="spanMsg"></span> <br/>
+   
+	<hr/>
+	<a href="index.html">retour vers index.html</a>
+</body>
+</html>

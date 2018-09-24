@@ -65,3 +65,14 @@ INSERT INTO Address(id_address_of_person,number, street , zip , town , country )
 
 INSERT INTO Login(username , password , customer_ref)  VALUES ( 'alex-therieur' , 'pwd1' , 1)
 INSERT INTO Login(username , password , customer_ref)  VALUES ( 'alain-therieur' , 'pwd2' , 2)
+
+INSERT INTO Category(id,title) VALUES(1,'theatre');
+INSERT INTO Category(id,title) VALUES(2,'concert');
+
+INSERT INTO Spectacle(id,category_id,title,description,duration,nb_places,price) VALUES (1,1,'theatre 1',null,120,200,20.0);
+INSERT INTO Spectacle(id,category_id,title,description,duration,nb_places,price) VALUES (2,1,'theatre 2',null,90,180,23.0);
+INSERT INTO Spectacle(id,category_id,title,description,duration,nb_places,price) VALUES (3,2,'concert 1','classique',120,300,22.0);
+INSERT INTO Spectacle(id,category_id,title,description,duration,nb_places,price) VALUES (4,2,'concert 2','rock',120,500,25.0);
+
+INSERT INTO Session(id,spectacle_id,session_date,start_time,nb_remaining_places) VALUES(1,1,'2018-09-26','21:00:00',200);
+INSERT INTO Session(id,spectacle_id,session_date,start_time,nb_remaining_places) VALUES(2,1,'2018-10-03','21:00:00',200);

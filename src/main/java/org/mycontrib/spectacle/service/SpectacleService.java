@@ -10,11 +10,12 @@ import org.mycontrib.spectacle.entity.Spectacle;
 public interface SpectacleService {
 	
 	public Category addCategory(Category category) ; //returned with auto_incr id
+	public Category findCategoryById(Long categoryId);
 	public void removeCategory(Long categoryId);
 	public List<Category> allCategories();
 	
 	public Spectacle findSpectacleById(Long spectacleId);
-	public List<Spectacle> findSpectaclesByCategory(Long categoryId);
+	public List<Spectacle> findSpectaclesByCategoryId(Long categoryId);
 	public List<Spectacle> findSpectaclesByCriteria(Date date, Long categoryId);//date without time, date or categoryId may be null
 	public Spectacle addSpectacle(Spectacle spectacle,Long categoryId); //returned with auto_incr id
 	public void removeSpectacle(Long spectacleId);

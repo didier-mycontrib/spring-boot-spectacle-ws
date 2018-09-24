@@ -3,42 +3,50 @@ package org.mycontrib.spectacle.service;
 import java.util.Date;
 import java.util.List;
 
+import org.mycontrib.spectacle.dao.CategoryDao;
+import org.mycontrib.spectacle.dao.SessionDao;
+import org.mycontrib.spectacle.dao.SpectacleDao;
 import org.mycontrib.spectacle.entity.Category;
 import org.mycontrib.spectacle.entity.Session;
 import org.mycontrib.spectacle.entity.Spectacle;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SpectacleServiceImpl implements SpectacleService {
+	@Autowired
+	private CategoryDao categoryDao;
+	
+	@Autowired
+	private SpectacleDao spectacleDao;
+	
+	@Autowired
+	private SessionDao sessionDao;
 
 	@Override
 	public Category addCategory(Category category) {
-		// TODO Auto-generated method stub
-		return null;
+		categoryDao.save(category);
+		return category;
 	}
 
 	@Override
 	public void removeCategory(Long categoryId) {
-		// TODO Auto-generated method stub
-
+		categoryDao.delete(categoryId);
 	}
 
 	@Override
 	public List<Category> allCategories() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Category>)categoryDao.findAll();
 	}
 
 	@Override
 	public Spectacle findSpectacleById(Long spectacleId) {
-		// TODO Auto-generated method stub
-		return null;
+		return spectacleDao.findOne(spectacleId);
 	}
 
 	@Override
-	public List<Spectacle> findSpectaclesByCategory(Long categoryId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Spectacle> findSpectaclesByCategoryId(Long categoryId) {
+		return spectacleDao.findByCategoryId(categoryId);
 	}
 
 	@Override
@@ -49,20 +57,20 @@ public class SpectacleServiceImpl implements SpectacleService {
 
 	@Override
 	public Spectacle addSpectacle(Spectacle spectacle, Long categoryId) {
-		// TODO Auto-generated method stub
-		return null;
+		Category category = categoryDao.findOne(categoryId);
+		spectacle.setCategory(category);
+		spectacleDao.save(spectacle);
+		return spectacle;
 	}
 
 	@Override
 	public void removeSpectacle(Long spectacleId) {
-		// TODO Auto-generated method stub
-
+		spectacleDao.delete(spectacleId);
 	}
 
 	@Override
 	public void updateSpectacle(Spectacle spectacle) {
-		// TODO Auto-generated method stub
-
+        spectacleDao.save(spectacle);//save or update
 	}
 
 	@Override
@@ -79,14 +87,17 @@ public class SpectacleServiceImpl implements SpectacleService {
 
 	@Override
 	public Session findSessionById(Long sessionId) {
-		// TODO Auto-generated method stub
-		return null;
+		return sessionDao.findOne(sessionId);
 	}
 
 	@Override
 	public void removeSession(Long sessionId) {
-		// TODO Auto-generated method stub
+		sessionDao.delete(sessionId);
+	}
 
+	@Override
+	public Category findCategoryById(Long categoryId) {
+		return categoryDao.findOne(categoryId);
 	}
 
 }

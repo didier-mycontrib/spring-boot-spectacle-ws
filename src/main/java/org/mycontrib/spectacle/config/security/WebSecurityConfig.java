@@ -27,6 +27,8 @@ public class WebSecurityConfig extends GenericWebSecurityConfig {
 		                        .permitAll()
 		                    .antMatchers(HttpMethod.POST,"/auth/**")
 		                        .permitAll()
+		                    .antMatchers(HttpMethod.GET,"/spectacle-api/public/**")
+		                        .permitAll()
 						// Any other request must be authenticated
 						.anyRequest().authenticated();
 	}

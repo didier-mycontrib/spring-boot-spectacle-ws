@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>browse-spectacles</title>
+	<script src="lib/jquery-3.3.1.min.js"></script>
+	<script src="js/my-jq-ajax-util.js"></script>
+	<script>
+	 $(function() {
+		 
+		 //appel ajax pour récupérer la liste des catégories et remplir le <select>
+		 $.ajax({
+	           type: "GET",
+	           url: "spectacle-api/public/spectacle/allCategories",
+	           contentType : "application/json",
+			   success: function (data,status,xhr) {
+	               if (data) {
+	            	   var categoryList = data;
+	            	   for(categoryIndex in categoryList){
+		            	   var category=categoryList[categoryIndex];
+		            	   	$('#selectCategory').append('<option value="'+ category.id +'">'+
+		            			 	  category.id + ' (' + category.title + ')</option>');
+	            	   }
+	            	   //$("#spanMsg").html(JSON.stringify(data));
+	               } 
+	           },
+	           error: function( jqXHR, textStatus, errorThrown ){
+	        	   $("#spanMsg").html( xhrStatusToErrorMessage(jqXHR)  ) ;
+	           }
+			   });//end $.ajax
+		 
+		 
+		 $('#btnFindByCategory').on('click',function(){
+			 //setSecurityTokenForAjax();//js/my-jq-ajax-util.js
+			 $.ajax({
+		           type: "GET",
+		           url: "spectacle-api/public/spectacle?categoryId="+$('#selectCategory').val(),
+		           contentType : "application/json",
+				   success: function (data,status,xhr) {
+		               if (data) {
+		            	   var spectacleList = data;
+		            	   $("#tableSpectacles tbody").empty();
+		            	   for(spectacleIndex in spectacleList){
+			            	   var spectacle=spectacleList[spectacleIndex];
+			            	   $("#tableSpectacles tbody").append("<tr><td>"+spectacle.id+
+			            			   							 "</td><td>"+spectacle.title+
+			            			   							 "</td><td>"+spectacle.duration+
+			            			   							 "</td><td>"+spectacle.nbPlaces+
+			            			   							 "</td><td>"+spectacle.price+
+			            			   							 "</td><td>"+spectacle.description+
+			            			                             "</td></tr>");
+		            	   }
+		            	  // $("#spanMsg").html(JSON.stringify(data));
+		               } 
+		           },
+		           error: function( jqXHR, textStatus, errorThrown ){
+		        	   $("#spanMsg").html( xhrStatusToErrorMessage(jqXHR)  ) ;
+		           }
+				   });//end $.ajax
+			 
+		 });//end on click btnFindByCategory
+	 });    
+	
+	</script>
+</head>
+<body>
+   <h3> BROWSE Spectacles </h3>
+  
+   categorie : <select id="selectCategory">
+                </select><br/>
+   <input type='button' value="findByCategory" id="btnFindByCategory"/> <br/>
+   <span id="spanMsg"></span> <br/>
+   <table border="1" id="tableSpectacles">
+     <thead>
+        <tr><th>id</th><th>titre</th><th>duration</th><th>nbPlaces</th><th>price</th><th>description</th></tr>
+      </thead>
+      <tbody>
+      </tbody>
+   </table>
+	<hr/>
+	<a href="index.html">retour vers index.html</a>
+</body>
+</html>

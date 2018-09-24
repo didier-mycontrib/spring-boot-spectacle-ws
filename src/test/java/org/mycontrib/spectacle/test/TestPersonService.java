@@ -3,9 +3,12 @@ package org.mycontrib.spectacle.test;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mycontrib.generic.security.service.test.TestLoginAccountService;
 import org.mycontrib.spectacle.config.WithAutoConfiguration;
 import org.mycontrib.spectacle.entity.Person;
 import org.mycontrib.spectacle.service.PersonService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -14,6 +17,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(classes= {WithAutoConfiguration.class})
 public class TestPersonService {
 	
+	private static Logger logger = LoggerFactory.getLogger(TestPersonService.class);
+	
 	@Autowired
 	private PersonService personService; //à tester
 	
@@ -21,7 +26,7 @@ public class TestPersonService {
 	public void testFindPersonById() {
 		Person p1 = this.personService.findPersonById(1L);
 		Assert.assertTrue(p1.getId()==1L);
-		System.out.println("p1="+p1.toString());
+		logger.debug("p1="+p1.toString());
 	}
 	
 	
