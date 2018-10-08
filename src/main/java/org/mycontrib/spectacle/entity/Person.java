@@ -24,7 +24,7 @@ import lombok.ToString;
 
 @Getter @Setter @NoArgsConstructor 
 @Entity 
-@Table(name="Person")
+@Table(name="person")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="person_type",discriminatorType=DiscriminatorType.STRING )
 @DiscriminatorValue("Person") //Personne ordinaire par defaut

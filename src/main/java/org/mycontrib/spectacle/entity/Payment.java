@@ -2,6 +2,7 @@ package org.mycontrib.spectacle.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,9 +12,10 @@ import lombok.ToString;
 
 @Getter @Setter @ToString @NoArgsConstructor @AllArgsConstructor
 @Entity
+@Table(name="payment")
 public class Payment {
 	@Id
-	private String number; //reference 
+	private String number; //reference (not auto_incr )
 	
 	private String details;
 }

@@ -9,9 +9,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class AuthRequest {
-	private String username;//as userNameOrId (or email) ; //as id (unique)
+	private String username;
 	private String password;
 	
-	//private String claimRole; //may be null/undefined
-	//private String organization; //may be null/undefined
 }

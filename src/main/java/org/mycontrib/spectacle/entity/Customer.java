@@ -1,17 +1,12 @@
 package org.mycontrib.spectacle.entity;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter @Setter  @NoArgsConstructor 
 @Entity 
@@ -21,25 +16,29 @@ import lombok.ToString;
 //@DiscriminatorColumn(name="personType",discriminatorType=DiscriminatorType.STRING)
 public class Customer extends Person{
 	
+	/*
+	//OLD-VERSION WITHOUT GENERIC SECURITY
+	//@OneToOne(mappedBy="customer")
+	//@JsonIgnore
+	//private Login login;
+	*/
 	
-	@OneToOne(mappedBy="customer")
-	@JsonIgnore
-	private Login login;
-	
+	@Column(name="login_id_ref")
+	private Long loginIdRef; //reference vers id of LoginAccount 
+	                         //(service LoginAccountService de generic.security)
+	private String username; //username in LoginAccount / generic.security
 
 	
 	/*
 	@OneToMany(mappedBy="client") //Lazy par defaut
 	private List<Resa> listeResa;
-*/
+	 */
 	
 	@Override
 	public String toString() {
 		return "Customer " + super.toString();
 	}
 
-	
-	
 	
 	
 	

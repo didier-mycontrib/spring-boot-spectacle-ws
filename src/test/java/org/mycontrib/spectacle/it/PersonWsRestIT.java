@@ -3,7 +3,7 @@ package org.mycontrib.spectacle.it;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mycontrib.spectacle.entity.Person;
+import org.mycontrib.spectacle.entity.Spectacle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
  */
 public class PersonWsRestIT {
 	
-	private static final String BASE_URL = "http://localhost:8888/spring-boot-spectacle-ws/spectacle-api";
+	private static final String BASE_URL = "http://localhost:8888/spring-boot-spectacle-ws/spectacle-api/public";
 	
 	private static Logger logger = LoggerFactory.getLogger(PersonWsRestIT.class);
 	
@@ -30,13 +30,13 @@ public class PersonWsRestIT {
 	}
 	
 	@Test
-	public void testGetPersonById(){
-		 final String uri = BASE_URL + "/person/1";
+	public void testGetSpectacleById(){
+		 final String uri = BASE_URL + "/spectacle/1";
 		 String resultAsJsonString = restTemplate.getForObject(uri, String.class);
-		 logger.info("json string of person 1 via rest: " + resultAsJsonString);
-		 Person p1 = restTemplate.getForObject(uri,Person.class);
-		 logger.info("person 1 via rest: " + p1);
-		 Assert.assertTrue(p1.getId()==1L);
+		 logger.info("json string of spectacle 1 via rest: " + resultAsJsonString);
+		 Spectacle s1 = restTemplate.getForObject(uri,Spectacle.class);
+		 logger.info("spectacle 1 via rest: " + s1);
+		 Assert.assertTrue(s1.getId()==1L);
 	}
 	/*
 	@Test

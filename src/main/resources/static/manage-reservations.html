@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>manage-persons</title>
+	<title>manage-reservations</title>
 	<script src="lib/jquery-3.3.1.min.js"></script>
 	<script src="js/my-jq-ajax-util.js"></script>
 	<script>
@@ -11,7 +11,7 @@
 			 setSecurityTokenForAjax();//js/my-jq-ajax-util.js
 			 $.ajax({
 		           type: "GET",
-		           url: "spectacle-api/person/"+$('#txtPersonId').val(),
+		           url: "spectacle-api/reservation/"+$('#txtReservationId').val(),
 		           contentType : "application/json",
 				   success: function (data,status,xhr) {
 		               if (data) {
@@ -29,9 +29,9 @@
 	</script>
 </head>
 <body>
-   <h3> MANAGE PERSONS/CUSTOMERS/LOGINS </h3>
+   <h3> MANAGE RESERVATION(S) </h3>
   
-   id : <input id="txtPersonId" type='text' value="1"/><br/>
+   id : <input id="txtReservationId" type='text' value="1"/><br/>
    <input type='button' value="findById" id="btnFindById"/> <br/>
    <span id="spanMsg"></span> <br/>
 	<hr/>

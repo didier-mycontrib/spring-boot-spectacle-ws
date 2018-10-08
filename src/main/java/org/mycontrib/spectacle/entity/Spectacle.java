@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -18,8 +19,9 @@ import lombok.Setter;
 
 @Getter @Setter @NoArgsConstructor
 @Entity
+@Table(name="spectacle")
 @NamedQueries(
-		@NamedQuery(name="findByCategoryId", 
+		@NamedQuery(name="Spectacle.findByCategoryId", 
 		query="SELECT s FROM Spectacle s WHERE s.category.id = ?1"))
 public class Spectacle {
 	@Id

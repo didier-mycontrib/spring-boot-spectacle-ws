@@ -56,23 +56,31 @@ INSERT INTO security_accounts_roles(account_id,role) VALUES (4,'GUEST');
 
 // ************************** Application Tables ***************
 
-INSERT INTO Person(id,person_type,first_name , last_name  ,email , phone_number)  VALUES (1,'Customer','alex' , 'Therieur'  , 'alex-therieur@iciOulaBas.fr' , '0102030405')
-INSERT INTO Person(id,person_type,first_name , last_name  ,email , phone_number)  VALUES  (2,'Customer','alain' , 'Therieur' , 'alain-therieur@xyz.fr' , '0123456789')
-INSERT INTO Person(id,person_type,first_name , last_name  ,email , phone_number , birthday )  VALUES  (3,'Person','p1' , 'NomQuiVaBien' , 'p1@xyz.fr' , '0123456789' , '1995-04-23')
+INSERT INTO person(id,person_type,first_name , last_name  ,email , phone_number , username , login_id_ref)  VALUES (1,'Customer','alex' , 'Therieur'  , 'alex-therieur@iciOulaBas.fr' , '0102030405' , 'member1' , 5)
+INSERT INTO person(id,person_type,first_name , last_name  ,email , phone_number , username , login_id_ref)  VALUES  (2,'Customer','alain' , 'Therieur' , 'alain-therieur@xyz.fr' , '0123456789' , 'member2' , 6)
+
+INSERT INTO person(id,person_type,first_name , last_name  ,email , phone_number , birthday )  VALUES  (3,'Person','p1' , 'NomQuiVaBien' , 'p1@xyz.fr' , '0123456789' , '1995-04-23')
    
-INSERT INTO Address(id_address_of_person,number, street , zip , town , country ) VALUES (1,'12','rue elle','75001','Paris' , 'France')
-INSERT INTO Address(id_address_of_person,number, street , zip , town , country ) VALUES (2,'14bis','rue serpentine','69000','Lyon' , 'France')
+INSERT INTO address(id_address_of_person,number, street , zip , town , country ) VALUES (1,'12','rue elle','75001','Paris' , 'France')
+INSERT INTO address(id_address_of_person,number, street , zip , town , country ) VALUES (2,'14bis','rue serpentine','69000','Lyon' , 'France')
 
-INSERT INTO Login(username , password , customer_ref)  VALUES ( 'alex-therieur' , 'pwd1' , 1)
-INSERT INTO Login(username , password , customer_ref)  VALUES ( 'alain-therieur' , 'pwd2' , 2)
+INSERT INTO category(id,title) VALUES(1,'theatre');
+INSERT INTO category(id,title) VALUES(2,'concert');
 
-INSERT INTO Category(id,title) VALUES(1,'theatre');
-INSERT INTO Category(id,title) VALUES(2,'concert');
+INSERT INTO spectacle(id,category_id,title,description,duration,nb_places,price) VALUES (1,1,'theatre 1',null,120,200,20.0);
+INSERT INTO spectacle(id,category_id,title,description,duration,nb_places,price) VALUES (2,1,'theatre 2',null,90,180,23.0);
+INSERT INTO spectacle(id,category_id,title,description,duration,nb_places,price) VALUES (3,2,'concert 1','classique',120,300,22.0);
+INSERT INTO spectacle(id,category_id,title,description,duration,nb_places,price) VALUES (4,2,'concert 2','rock',120,500,25.0);
 
-INSERT INTO Spectacle(id,category_id,title,description,duration,nb_places,price) VALUES (1,1,'theatre 1',null,120,200,20.0);
-INSERT INTO Spectacle(id,category_id,title,description,duration,nb_places,price) VALUES (2,1,'theatre 2',null,90,180,23.0);
-INSERT INTO Spectacle(id,category_id,title,description,duration,nb_places,price) VALUES (3,2,'concert 1','classique',120,300,22.0);
-INSERT INTO Spectacle(id,category_id,title,description,duration,nb_places,price) VALUES (4,2,'concert 2','rock',120,500,25.0);
+INSERT INTO session(id,spectacle_id,session_date,start_time,nb_remaining_places) VALUES(1,1,'2018-09-26','21:00:00',200);
+INSERT INTO session(id,spectacle_id,session_date,start_time,nb_remaining_places) VALUES(2,1,'2018-10-03','21:00:00',200);
 
-INSERT INTO Session(id,spectacle_id,session_date,start_time,nb_remaining_places) VALUES(1,1,'2018-09-26','21:00:00',200);
-INSERT INTO Session(id,spectacle_id,session_date,start_time,nb_remaining_places) VALUES(2,1,'2018-10-03','21:00:00',200);
+INSERT INTO payment(number,details) VALUES(1,'ok via Paypal');
+INSERT INTO payment(number,details) VALUES(2,'ok via Bank Xy');
+
+INSERT INTO reservation(id,reservation_date,customer_id,session_id,payment_ref,global_amount) VALUES(1,'2018-09-12',1,1,1,40.0);
+INSERT INTO reservation(id,reservation_date,customer_id,session_id,payment_ref,global_amount) VALUES(2,'2018-09-16',2,2,2,25.0);
+
+INSERT INTO reservation_participants(reservation_id,person_id) VALUES(1,2);
+INSERT INTO reservation_participants(reservation_id,person_id) VALUES(1,3);
+INSERT INTO reservation_participants(reservation_id,person_id) VALUES(2,2);

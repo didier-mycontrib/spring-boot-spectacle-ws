@@ -1,8 +1,6 @@
 package org.mycontrib.spectacle.service;
 
 import org.mycontrib.spectacle.entity.Address;
-import org.mycontrib.spectacle.entity.Customer;
-import org.mycontrib.spectacle.entity.Login;
 import org.mycontrib.spectacle.entity.Person;
 
 /**
@@ -19,8 +17,4 @@ public interface PersonService {
 	public void specifyPersonAddress(Long personId,Address address);
 	public void updatePerson(Person person); 
 	public void removePerson(Long personId);//removing login also if customer
-	
-	public void specifyCustomerLogin(Long customerId,Login login);
-	public Customer findCustomerByUsername(String username);
-	public Boolean checkLoginPassword(String username, String password);
 }

@@ -13,5 +13,5 @@ public interface ReservationService {
 	public List<Reservation> findReservationsByCriteria(Long customerId,Long spectacleId); //each criteria may be null
 	public Reservation makeReservation(Long customerId, Long sessionId, List<Long> participantIds);
 	public void cancelReservation(Long reservationId);
-	public void AttachPayment(Long reservationId, Payment payment);
+	public void attachPayment(Long reservationId, Payment payment);
 }

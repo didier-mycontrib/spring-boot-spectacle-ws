@@ -1,6 +1,5 @@
 package org.mycontrib.spectacle.rest;
 
-import org.mycontrib.generic.security.persistence.entity.SecurityGroup;
 import org.mycontrib.spectacle.entity.Person;
 import org.mycontrib.spectacle.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,7 @@ public class CustomerRestCtrl {
 	@PreAuthorize("hasRole('USER') or hasRole('MEMBER')") //hasRole("XYZ") est à peu près équivalent à hasAuthority("ROLE_XYZ")
 	Person personById( @PathVariable("personId") Long personId ){
 		return personService.findPersonById(personId);
-		//NB: le resultat java de type List<Person>
+		//NB: le resultat java de type Person
 		//sera automatiquement transformé au format JSON
 	}
 	

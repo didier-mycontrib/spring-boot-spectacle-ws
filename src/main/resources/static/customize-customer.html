@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>customize-customer</title>
+	<script src="lib/jquery-3.3.1.min.js"></script>
+	<script src="js/my-jq-ajax-util.js"></script>
+	<script>
+	 $(function() {
+		 $('#btnFindById').on('click',function(){
+			 setSecurityTokenForAjax();//js/my-jq-ajax-util.js
+			 $.ajax({
+		           type: "GET",
+		           url: "spectacle-api/person/"+$('#txtPersonId').val(),
+		           contentType : "application/json",
+				   success: function (data,status,xhr) {
+		               if (data) {
+		            	   $("#spanMsg").html(JSON.stringify(data));
+		               } 
+		           },
+		           error: function( jqXHR, textStatus, errorThrown ){
+		        	   $("#spanMsg").html( xhrStatusToErrorMessage(jqXHR)  ) ;
+		           }
+				   });//end $.ajax
+			 
+		 });//end on click btnFindById
+	 }); 
+	
+	</script>
+</head>
+<body>
+   <h3> MANAGE CUSTOMER INFOS </h3>
+  
+   id : <input id="txtPersonId" type='text' value="1"/><br/>
+   <input type='button' value="findById" id="btnFindById"/> <br/>
+   <span id="spanMsg"></span> <br/>
+	<hr/>
+	<a href="index.html">retour vers index.html</a>
+</body>
+</html>

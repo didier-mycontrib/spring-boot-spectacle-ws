@@ -17,7 +17,7 @@ import lombok.ToString;
 //@Entity ou @Embeddable
 @Getter @Setter @NoArgsConstructor 
 @Entity 
-@Table(name="Address")//au sens AddressOfCustomer avec correspondance de pk
+@Table(name="address")//au sens AddressOfCustomer avec correspondance de pk
 public class Address {
 
 	@Id //pas de @GeneratedValue si correspondance de pk 
