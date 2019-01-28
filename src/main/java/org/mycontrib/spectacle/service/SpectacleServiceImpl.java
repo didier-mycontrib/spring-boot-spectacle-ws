@@ -31,7 +31,7 @@ public class SpectacleServiceImpl implements SpectacleService {
 
 	@Override
 	public void removeCategory(Long categoryId) {
-		categoryDao.delete(categoryId);
+		categoryDao.deleteById(categoryId);
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class SpectacleServiceImpl implements SpectacleService {
 
 	@Override
 	public Spectacle findSpectacleById(Long spectacleId) {
-		return spectacleDao.findOne(spectacleId);
+		return spectacleDao.findById(spectacleId).orElse(null);
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class SpectacleServiceImpl implements SpectacleService {
 
 	@Override
 	public Spectacle addSpectacle(Spectacle spectacle, Long categoryId) {
-		Category category = categoryDao.findOne(categoryId);
+		Category category = categoryDao.findById(categoryId).get();
 		spectacle.setCategory(category);
 		spectacleDao.save(spectacle);
 		return spectacle;
@@ -65,7 +65,7 @@ public class SpectacleServiceImpl implements SpectacleService {
 
 	@Override
 	public void removeSpectacle(Long spectacleId) {
-		spectacleDao.delete(spectacleId);
+		spectacleDao.deleteById(spectacleId);
 	}
 
 	@Override
@@ -87,17 +87,17 @@ public class SpectacleServiceImpl implements SpectacleService {
 
 	@Override
 	public Session findSessionById(Long sessionId) {
-		return sessionDao.findOne(sessionId);
+		return sessionDao.findById(sessionId).orElse(null);
 	}
 
 	@Override
 	public void removeSession(Long sessionId) {
-		sessionDao.delete(sessionId);
+		sessionDao.deleteById(sessionId);
 	}
 
 	@Override
 	public Category findCategoryById(Long categoryId) {
-		return categoryDao.findOne(categoryId);
+		return categoryDao.findById(categoryId).orElse(null);
 	}
 
 }

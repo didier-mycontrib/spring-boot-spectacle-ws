@@ -23,10 +23,10 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface SessionDao extends CrudRepository<Session,Long>{
    /* méthodes héritées:
-  	   ... findOne(...)
+  	 ... findById(...)
   	   .... findAll()
   	   ...save(...)
-  	   ...delete(...)
+  	   ...deleteById(...)
     */
 
 }

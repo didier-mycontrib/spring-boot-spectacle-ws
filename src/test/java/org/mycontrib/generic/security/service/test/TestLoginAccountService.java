@@ -8,7 +8,7 @@ import org.mycontrib.generic.security.generic.LoginAccountDetails;
 import org.mycontrib.generic.security.generic.LoginInfo;
 import org.mycontrib.generic.security.persistence.entity.LoginAccount;
 import org.mycontrib.generic.security.service.LoginAccountService;
-import org.mycontrib.spectacle.config.WithAutoConfiguration;
+import org.mycontrib.spectacle.SpectacleSpringBootApp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes= {WithAutoConfiguration.class})
+@SpringBootTest(classes= {SpectacleSpringBootApp.class})
 public class TestLoginAccountService {
 	
 	private static Logger logger = LoggerFactory.getLogger(TestLoginAccountService.class);

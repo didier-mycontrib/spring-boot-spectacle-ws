@@ -23,7 +23,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public void specifiyCustomerLogin(Long personId, Long loginIdRef, String username) {
-		Customer c = customerDao.findOne(personId);
+		Customer c = customerDao.findById(personId).get();
 		c.setLoginIdRef(loginIdRef);
 		c.setUsername(username);
 	}
@@ -40,7 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Customer findCustomerById(Long personId) {
-		return customerDao.findOne(personId);
+		return customerDao.findById(personId).orElse(null);
 	}
 
 }

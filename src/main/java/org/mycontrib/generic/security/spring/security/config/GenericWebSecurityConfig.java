@@ -5,6 +5,7 @@ import org.mycontrib.generic.security.spring.security.JwtAuthenticationEntryPoin
 import org.mycontrib.generic.security.spring.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -30,6 +31,11 @@ public abstract class GenericWebSecurityConfig extends WebSecurityConfigurerAdap
 	
 	protected abstract void apiSpecificHttpConfig(HttpSecurity http)throws Exception;
 	
+	@Override
+    @Bean  //necessary since spring-boot 2.x and spring 5.x
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

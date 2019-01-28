@@ -25,10 +25,10 @@ public interface CustomerDao extends CrudRepository<Customer,Long>{
 
 	Customer findByUsername(String username);
    /* méthodes héritées:
-  	   ... findOne(...)
+  	   ... findById(...)
   	   .... findAll()
   	   ...save(...)
-  	   ...delete(...)
+  	   ...deleteById(...)
     */
 
 	Customer findByLoginIdRef(Long loginId);

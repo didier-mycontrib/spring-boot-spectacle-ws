@@ -31,6 +31,14 @@ public class WebSecurityConfig extends GenericWebSecurityConfig {
 		                        .permitAll()
 						// Any other request must be authenticated
 						.anyRequest().authenticated();
+		                        
+		                //temporairement pour swagger:
+		                //        .antMatchers("/**/*.*").permitAll();
+					
+					//NB: pour swagger renseigner l'url complete suivante
+					//au sein d'un navigateur:
+					// http://localhost:8888/spring-boot-spectacle-ws/swagger-ui.html
+					// et http://localhost:8888/spring-boot-spectacle-ws/v2/api-docs
 	}
 
 }

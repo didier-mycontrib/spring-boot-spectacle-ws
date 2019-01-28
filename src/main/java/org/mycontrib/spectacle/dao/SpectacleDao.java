@@ -25,10 +25,10 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface SpectacleDao extends CrudRepository<Spectacle,Long>{
    /* méthodes héritées:
-  	   ... findOne(...)
+  	   ... findById(...)
   	   .... findAll()
   	   ...save(...)
-  	   ...delete(...)
+  	   ...deleteById(...)
     */
 	List<Spectacle> findByCategoryId(Long categoryId);//via NamedQuery
 

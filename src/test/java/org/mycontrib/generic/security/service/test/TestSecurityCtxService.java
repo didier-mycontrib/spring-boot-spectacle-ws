@@ -9,7 +9,7 @@ import org.mycontrib.generic.security.persistence.entity.SecurityCtx;
 import org.mycontrib.generic.security.persistence.entity.SecurityDomain;
 import org.mycontrib.generic.security.persistence.entity.SecurityGroup;
 import org.mycontrib.generic.security.service.SecurityCtxService;
-import org.mycontrib.spectacle.config.WithAutoConfiguration;
+import org.mycontrib.spectacle.SpectacleSpringBootApp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes= {WithAutoConfiguration.class})
+@SpringBootTest(classes= {SpectacleSpringBootApp.class})
 public class TestSecurityCtxService {
 	
 	private static Logger logger = LoggerFactory.getLogger(TestSecurityCtxService.class);

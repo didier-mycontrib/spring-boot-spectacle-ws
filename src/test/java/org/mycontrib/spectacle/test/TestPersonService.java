@@ -3,7 +3,7 @@ package org.mycontrib.spectacle.test;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mycontrib.spectacle.config.WithAutoConfiguration;
+import org.mycontrib.spectacle.SpectacleSpringBootApp;
 import org.mycontrib.spectacle.entity.Customer;
 import org.mycontrib.spectacle.entity.Person;
 import org.mycontrib.spectacle.service.CustomerService;
@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes= {WithAutoConfiguration.class})
+@SpringBootTest(classes= {SpectacleSpringBootApp.class})
 public class TestPersonService {
 	
 	private static Logger logger = LoggerFactory.getLogger(TestPersonService.class);

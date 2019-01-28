@@ -21,12 +21,12 @@ public class PersonServiceImpl implements PersonService {
 
 	@Override
 	public  Person findPersonById(Long personId) {
-		return personDao.findOne(personId);
+		return personDao.findById(personId).orElse(null);
 	}
 
 	@Override
 	public void specifyPersonAddress(Long personId, Address address) {
-		Person p = personDao.findOne(personId);
+		Person p = personDao.findById(personId).get();
 		p.setAddress(address);
 	    //automatic update/merge in persistent state
 	}
@@ -38,6 +38,6 @@ public class PersonServiceImpl implements PersonService {
 
 	@Override
 	public void removePerson(Long personId) {
-		personDao.delete(personId);
+		personDao.deleteById(personId);
 	}
 }

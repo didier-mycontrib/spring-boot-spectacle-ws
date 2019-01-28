@@ -27,7 +27,7 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Override
 	public Reservation findReservationById(Long reservationId) {
-		Reservation r =  reservationDao.findOne(reservationId);
+		Reservation r =  reservationDao.findById(reservationId).get();
 		loadLazyEntity(r.getSession());
 		loadLazyEntity(r.getSession().getSpectacle());
 		loadLazyEntity(r.getPayment());
@@ -56,7 +56,7 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Override
 	public void attachPayment(Long reservationId, Payment payment) {
-		Reservation r =  reservationDao.findOne(reservationId);
+		Reservation r =  reservationDao.findById(reservationId).get();
 		r.setPayment(payment);
         //automatic update/merge in persistent state
 	}

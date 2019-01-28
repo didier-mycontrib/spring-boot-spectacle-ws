@@ -23,10 +23,10 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ReservationDao extends CrudRepository<Reservation,Long>{
    /* méthodes héritées:
-  	   ... findOne(...)
+  	   ... findById(...)
   	   .... findAll()
   	   ...save(...)
-  	   ...delete(...)
+  	   ...deleteById(...)
     */
 
 }

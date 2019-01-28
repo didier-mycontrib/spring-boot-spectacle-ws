@@ -1,24 +1,25 @@
-package org.mycontrib.spectacle.boot;
+package org.mycontrib.spectacle;
 
 
-import org.mycontrib.spectacle.config.WithAutoConfiguration;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+//NB: @SpringBootApplication est un equivalent 
+//de @Configuration + @EnableAutoConfiguration + @ComponentScan/current package
 
-public class BootWithEmbeddedTomcat {
+@SpringBootApplication
+// automatic @Import(AdditionalSpecificConfiguration.class) / @Configuration in sub package
+// automatic @Import(WebSecurityConfig.class) / @Configuration in sub package
+public class SpectacleSpringBootApp {
 	// le boot complet avec webApp prise en charge par tomcat embarqué .
-	
-
 	
 	public static void main(String[] args) {
 			
 		// on prépare la configuration de l'application en mode spring-boot
 		
-	     SpringApplication app = new SpringApplication(WithAutoConfiguration.class);
+	     SpringApplication app = new SpringApplication(SpectacleSpringBootApp.class);
 		
-		
-		app.setWebEnvironment(true);
 		//app.setLogStartupInfo(false);
 		
 		//setting profile (context.getEnvironment().setActiveProfiles("...") ) :
