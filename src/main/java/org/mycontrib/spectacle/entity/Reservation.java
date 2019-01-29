@@ -19,11 +19,12 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.mycontrib.util.DateUtil;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter @Setter @NoArgsConstructor 
+@Getter @Setter 
 @Entity
 @Table(name="reservation")
 public class Reservation {
@@ -78,6 +79,24 @@ public class Reservation {
 	@Override
 	public String toString() {
 		return "Reservation [id=" + id + ", date=" + date + ", globalAmount=" + globalAmount + "]";
+	}
+
+	public Reservation() {
+		super();
+		this.date = new Date();
+	}
+
+
+	public Reservation(Date date, Double globalAmount) {
+		super();
+		this.date = date;
+		this.globalAmount = globalAmount;
+	}
+	
+	public Reservation(String dateAsString, Double globalAmount) {
+		super();
+		this.date = DateUtil.javaDateFromStringDate(dateAsString);
+		this.globalAmount = globalAmount;
 	}
 	
 	

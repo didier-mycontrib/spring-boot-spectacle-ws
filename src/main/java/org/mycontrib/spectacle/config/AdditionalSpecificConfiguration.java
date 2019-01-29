@@ -5,9 +5,11 @@ package org.mycontrib.spectacle.config;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
+@Profile("complex-security")
 //@EnableAutoConfiguration //already as a sub behavior of @SpringBootApplication in parent config
 @EnableJpaRepositories(basePackages = {"org.mycontrib.spectacle.dao"}) //default is package (and subs) of @SpringBootApplication
 @EntityScan(basePackages= {"org.mycontrib.generic.security.persistence.entity" ,

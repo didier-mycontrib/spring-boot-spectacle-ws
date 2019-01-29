@@ -77,6 +77,13 @@ public abstract class SecurityCtx {
 	public String toString() {
 		return "SecurityContext [id=" + id + ", name=" + name + ", description=" + description + "]";
 	}
+
+	public SecurityCtx(String name) {
+		super();
+		this.name = name;
+	}
+	
+	
 	
 	
 }

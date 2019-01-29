@@ -29,6 +29,7 @@ public class PublicSpectacleRestCtrl {
 		
 	}
 	
+	//http://localhost:8888/spring-boot-spectacle-ws/spectacle-api/public/spectacle/allCategories
 	@GetMapping(value="/allCategories" )
 	List<Category> getAllCategories( ){
 		return spectacleService.allCategories();

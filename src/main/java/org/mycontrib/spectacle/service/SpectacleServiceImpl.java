@@ -75,14 +75,15 @@ public class SpectacleServiceImpl implements SpectacleService {
 
 	@Override
 	public Session addSession(Long spectacleId, Session session) {
-		// TODO Auto-generated method stub
-		return null;
+		Spectacle spectacle = spectacleDao.findById(spectacleId).get();
+		session.setSpectacle(spectacle);
+		sessionDao.save(session);
+		return session;
 	}
 
 	@Override
 	public List<Session> findSessionsOfSpectacle(Long spectacleId) {
-		// TODO Auto-generated method stub
-		return null;
+		return sessionDao.findBySpectacleId(spectacleId);
 	}
 
 	@Override

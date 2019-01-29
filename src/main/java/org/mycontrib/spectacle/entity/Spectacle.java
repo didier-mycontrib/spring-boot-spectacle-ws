@@ -24,6 +24,15 @@ import lombok.Setter;
 		@NamedQuery(name="Spectacle.findByCategoryId", 
 		query="SELECT s FROM Spectacle s WHERE s.category.id = ?1"))
 public class Spectacle {
+	public Spectacle(String title, String description, Integer duration, Integer nbPlaces, Double price) {
+		super();
+		this.title = title;
+		this.description = description;
+		this.duration = duration;
+		this.nbPlaces = nbPlaces;
+		this.price = price;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

@@ -1,8 +1,6 @@
 package org.mycontrib.spectacle.dao;
 
-import java.util.List;
-
-import org.mycontrib.spectacle.entity.Session;
+import org.mycontrib.spectacle.entity.Payment;
 import org.springframework.data.repository.CrudRepository;
 
 /*
@@ -23,14 +21,12 @@ import org.springframework.data.repository.CrudRepository;
  * être codé comme un @NameQuery de nom "EntityClass.findXyz"
  */
 
-public interface SessionDao extends CrudRepository<Session,Long>{
-
-	
+public interface PaymentDao extends CrudRepository<Payment,String>{
    /* méthodes héritées:
-  	 ... findById(...)
+  	   ... findById(...)
   	   .... findAll()
   	   ...save(...)
   	   ...deleteById(...)
     */
-	List<Session> findBySpectacleId(Long spectacleId);
+
 }

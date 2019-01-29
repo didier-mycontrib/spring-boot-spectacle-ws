@@ -22,8 +22,8 @@ public class SpectacleSpringBootApp {
 		
 		//app.setLogStartupInfo(false);
 		
-		//setting profile (context.getEnvironment().setActiveProfiles("...") ) :
-		//app.setAdditionalProfiles( "p1" , "with-thymeleaf"); 
+	    //app.setAdditionalProfiles("web.dev" , "simple-security");
+	    app.setAdditionalProfiles("web.dev" , "complex-security");
 		
 		// on lance l'application spring
 		ConfigurableApplicationContext context =  app.run(args);

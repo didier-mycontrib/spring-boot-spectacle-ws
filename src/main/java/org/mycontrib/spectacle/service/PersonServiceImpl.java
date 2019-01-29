@@ -1,8 +1,8 @@
 package org.mycontrib.spectacle.service;
 
+import org.mycontrib.spectacle.dao.AddressDao;
 import org.mycontrib.spectacle.dao.PersonDao;
 import org.mycontrib.spectacle.entity.Address;
-import org.mycontrib.spectacle.entity.Customer;
 import org.mycontrib.spectacle.entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +12,9 @@ public class PersonServiceImpl implements PersonService {
 	
 	@Autowired
 	private PersonDao personDao;
+	
+	@Autowired
+	private AddressDao addressDao;
 	
 	@Override
 	public Person addNewPerson(Person person) {
@@ -27,8 +30,9 @@ public class PersonServiceImpl implements PersonService {
 	@Override
 	public void specifyPersonAddress(Long personId, Address address) {
 		Person p = personDao.findById(personId).get();
+		address.setIdAddressOfPerson(personId);
 		p.setAddress(address);
-	    //automatic update/merge in persistent state
+		addressDao.save(address);
 	}
 
 	@Override

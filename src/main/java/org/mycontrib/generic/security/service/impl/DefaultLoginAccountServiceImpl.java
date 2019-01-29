@@ -5,8 +5,10 @@ import java.util.List;
 import org.mycontrib.generic.security.generic.LoginInfo;
 import org.mycontrib.generic.security.persistence.dao.LoginAccountDao;
 import org.mycontrib.generic.security.persistence.dao.SecurityCtxDao;
+import org.mycontrib.generic.security.persistence.dao.SecurityRoleDao;
 import org.mycontrib.generic.security.persistence.entity.LoginAccount;
 import org.mycontrib.generic.security.persistence.entity.SecurityCtx;
+import org.mycontrib.generic.security.persistence.entity.SecurityRole;
 import org.mycontrib.generic.security.service.LoginAccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +33,9 @@ public class DefaultLoginAccountServiceImpl implements LoginAccountService{
 	
 	@Autowired
 	private SecurityCtxDao securityContextDao;
+	
+	@Autowired
+	private SecurityRoleDao securityRoleDao;
 	
 	@Override
 	public LoginAccount createAccount(LoginAccount loginAccount) {
@@ -125,6 +130,15 @@ public class DefaultLoginAccountServiceImpl implements LoginAccountService{
 			loginInfo=loginAccount;
 		}
 		return loginInfo;
+	}
+
+	@Override
+	public void addSpecificSecurityRoleForUser(Long loginId, String uniqueRoleName) {
+		LoginAccount userAccount =  loginAccountDao.findByLoginId(loginId);
+		SecurityRole r = securityRoleDao.findByRoleName(uniqueRoleName);
+		userAccount.getSpecificRolesOfUser().add(r);
+		//automatic update/merge at the end of transaction (with persistent entities)
+		
 	}
 
 	

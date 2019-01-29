@@ -39,6 +39,12 @@ public class Customer extends Person{
 		return "Customer " + super.toString();
 	}
 
+
+	public Customer(String lastName, String firstName, String phoneNumber, String email) {
+		super(lastName, firstName, phoneNumber, email);
+
+	}
+
 	
 	
 	

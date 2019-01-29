@@ -19,6 +19,8 @@ public interface LoginAccountService extends AbstractPersistentLoginService {
 	LoginAccount createAccountInGroup(LoginAccount userAccount, String groupName);
 	LoginAccount findByLoginId(Long loginId);
 	
+	void addSpecificSecurityRoleForUser(Long loginId,String uniqueRoleName);
+	
     void updateAccount(LoginAccount loginAccount);
     void deleteAccount(Long loginId);
     boolean checkUserNameAvailability(String wishedUsername, String fullContextName);

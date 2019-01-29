@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mycontrib.spectacle.SpectacleSpringBootApp;
 import org.mycontrib.spectacle.entity.Category;
+import org.mycontrib.spectacle.entity.Session;
 import org.mycontrib.spectacle.entity.Spectacle;
 import org.mycontrib.spectacle.service.SpectacleService;
 import org.slf4j.Logger;
@@ -45,35 +46,57 @@ public class TestSpectacleService {
 	
 	@Test
 	public void testFindSpectacleById() {
-		Spectacle s1 = this.spectacleService.findSpectacleById(1L);
-		Assert.assertTrue(s1.getId()==1L);
-		logger.debug("s1="+s1.toString());
+		Category categoryTheatre = new Category(null,"theatre"); spectacleService.addCategory(categoryTheatre);
+		Spectacle s1 = new Spectacle("theatre 1",null,120,200,20.0); spectacleService.addSpectacle(s1, categoryTheatre.getId());
+		Session s1se1 = new Session("2018-09-26","21:00:00",200); spectacleService.addSession(s1.getId(), s1se1);
+		Session s1se2 = new Session("2018-10-03","21:00:00",200); spectacleService.addSession(s1.getId(), s1se2);
+		Spectacle s1Relu = this.spectacleService.findSpectacleById(s1.getId());
+		Assert.assertTrue(s1Relu.getId()==s1.getId());
+		logger.debug("s1Relu="+s1Relu.toString());
+		List<Session> sessionsDuSpectacleS1 = this.spectacleService.findSessionsOfSpectacle(s1.getId());
+		Assert.assertTrue(sessionsDuSpectacleS1.size()>=2);
+		for(Session s :  sessionsDuSpectacleS1) {
+			logger.debug("session de s1="+s.toString());
+		}
 	}
 	
 	@Test
 	public void testFindSpectaclesByCategoryId() {
-		List<Spectacle> listeSpectacles = this.spectacleService.findSpectaclesByCategoryId(1L);
+		Category categoryTheatre = new Category(null,"theatre"); spectacleService.addCategory(categoryTheatre);
+		Spectacle s1 = new Spectacle("theatre 1",null,120,200,20.0); spectacleService.addSpectacle(s1, categoryTheatre.getId());
+		Spectacle s2 = new Spectacle("theatre 2",null,90,180,23.0); spectacleService.addSpectacle(s2, categoryTheatre.getId());
+		
+		List<Spectacle> listeSpectacles = this.spectacleService.findSpectaclesByCategoryId(categoryTheatre.getId());
 		Assert.assertNotNull(listeSpectacles);
 		Assert.assertTrue(listeSpectacles.size()>=1);
-		logger.debug("spectacles de la categorie 1 (theatre):");
+		logger.debug("spectacles de la categorie (theatre):");
 		for(Spectacle s : listeSpectacles){
 			logger.debug("\t"+s.toString());
 		}
 	}
 	
+
+	
 	@Test
 	public void testAddSpectacle() {
+		Category categoryTheatre = new Category(null,"theatre"); spectacleService.addCategory(categoryTheatre);
+		Category categoryConcert = new Category(null,"concert"); spectacleService.addCategory(categoryConcert);
+		Spectacle s1 = new Spectacle("theatre 1",null,120,200,20.0); spectacleService.addSpectacle(s1, categoryTheatre.getId());
+		Spectacle s2 = new Spectacle("theatre 2",null,90,180,23.0); spectacleService.addSpectacle(s2, categoryTheatre.getId());
+		Spectacle s3 = new Spectacle("concert 1","classique",120,300,22.0); spectacleService.addSpectacle(s3, categoryConcert.getId());
+		Spectacle s4 = new Spectacle("concert 2","rock",120,500,25.0); spectacleService.addSpectacle(s4, categoryConcert.getId());
+		
 		Spectacle s = new Spectacle();
 		s.setTitle("nouveau spectacle");
 		s.setDuration(60);
 		s.setPrice(25.8);
 		s.setNbPlaces(435);
 		s.setDescription("description qui va bien");
-		s=this.spectacleService.addSpectacle(s, 2L);
+		s=this.spectacleService.addSpectacle(s, categoryConcert.getId());
 		Assert.assertNotNull(s.getId());
 		logger.debug("s="+s.toString());
 		
-		List<Spectacle> listeSpectacles = this.spectacleService.findSpectaclesByCategoryId(2L);
+		List<Spectacle> listeSpectacles = this.spectacleService.findSpectaclesByCategoryId(categoryConcert.getId());
 		logger.debug("spectacles de la categorie 2:");
 		for(Spectacle sp : listeSpectacles){
 			logger.debug("\t"+sp.toString());

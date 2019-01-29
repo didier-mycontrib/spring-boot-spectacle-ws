@@ -33,5 +33,10 @@ public class SecurityGroup extends SecurityCtx{
 		return "SecurityGroup extends " + super.toString() + "]";
 	}
 
+	public SecurityGroup(String name) {
+		super(name);
+	}
+
+	
 	
 }

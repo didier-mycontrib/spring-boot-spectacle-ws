@@ -32,5 +32,13 @@ public class SecurityRole {
 	                     //ou bien "xyz/admin" , "xyz/user" si spécifique à organisation
 	
 	private String description; // utilisateur , administrateur , ...
+	
+	public SecurityRole(String name, String description) {
+		super();
+		this.name = name;
+		this.description = description;
+	}
+	
+	
 
 }

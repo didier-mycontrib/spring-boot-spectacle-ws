@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 //@Entity ou @Embeddable
 @Getter @Setter @NoArgsConstructor 
@@ -44,7 +43,18 @@ public class Address {
 	public String toString() {
 		return "Address [idAddressOfPerson=" + idAddressOfPerson + ", number=" + number + ", street=" + street
 				+ ", zip=" + zip + ", town=" + town + ", country=" + country + "]";
+	}
+
+	public Address(String number, String street, String zip, String town, String country) {
+		super();
+		this.number = number;
+		this.street = street;
+		this.zip = zip;
+		this.town = town;
+		this.country = country;
 	} 
+	
+	
 	
 	
 }

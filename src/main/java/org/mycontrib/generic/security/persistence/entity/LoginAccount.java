@@ -105,7 +105,7 @@ public class LoginAccount implements LoginInfo{
 	//des rôles associés à tout un groupe d'utilisateurs
 	
 	@Transient
-	private Set<String> computedGlobalRoleSet = new HashSet<String>();;
+	private Set<String> computedGlobalRoleSet = new HashSet<String>();
 	
 	private String detail;//result of LoginAccountDetails / .toJsonString()
 
@@ -113,6 +113,11 @@ public class LoginAccount implements LoginInfo{
 		super();
 		this.username = username;
 		this.password = password;
+	}
+	
+	public LoginAccount(String username, String password,String detail) {
+		this(username,password);
+		this.detail = detail;
 	}
 
 	@Override

@@ -20,7 +20,6 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter @Setter @NoArgsConstructor 
 @Entity 
@@ -59,7 +58,22 @@ public class Person {
 	@Override
 	public String toString() {
 		return "Person [id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", phoneNumber="
-				+ phoneNumber + ", email=" + email + ", address=" + address + ", birthday=" + birthday + "]";
+				+ phoneNumber + ", email=" + email  + ", birthday=" + birthday + "]";
+	}
+
+	public Person(String lastName, String firstName, String phoneNumber, String email) {
+		super();
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+	}
+	
+	public void setAddress(Address a) {
+		if(a!=null) {
+			a.setIdAddressOfPerson(this.id);
+		}
+		this.address=a;
 	}
 	
 

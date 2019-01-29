@@ -1,6 +1,5 @@
 package org.mycontrib.generic.security.persistence.entity;
 
-import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
@@ -35,6 +34,13 @@ public class SecurityDomain extends SecurityCtx{
 	public String toString() {
 		return "SecurityDomain [ infos=" + infos + ", heritant de " + super.toString() + "]";
 	}
+	
+	
+	public SecurityDomain(String name, String infos) {
+		super(name);
+		this.infos = infos;
+	}
+	
 	
 	
 }
