@@ -3,6 +3,7 @@ package org.mycontrib.spectacle.rest;
 import java.util.List;
 
 import org.mycontrib.spectacle.entity.Category;
+import org.mycontrib.spectacle.entity.Session;
 import org.mycontrib.spectacle.entity.Spectacle;
 import org.mycontrib.spectacle.service.SpectacleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,13 @@ public class PublicSpectacleRestCtrl {
 	Spectacle spectacleById( @PathVariable("spectacleId") Long spectacleId ){
 		return spectacleService.findSpectacleById(spectacleId);
 		
+	}
+	
+	//sera appelé en HTTP / GET avec l' URL suivante:
+		// http://localhost:8888/spring-boot-spectacle-ws/spectacle-api/public/spectacle/sessions?spectacleId=1
+	@GetMapping(value="/sessions" )
+	List<Session> sessionsOfSpectacles( @RequestParam("spectacleId") Long spectacleId ){
+			return spectacleService.findSessionsOfSpectacle(spectacleId);		
 	}
 	
 	//http://localhost:8888/spring-boot-spectacle-ws/spectacle-api/public/spectacle/allCategories
