@@ -1,5 +1,6 @@
 package org.mycontrib.spectacle.rest;
 
+import org.mycontrib.spectacle.entity.Category;
 import org.mycontrib.spectacle.rest.data.SpectacleAddition;
 import org.mycontrib.spectacle.service.SpectacleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,16 @@ public class AdminSpectacleRestCtrl {
 	public ResponseEntity<SpectacleAddition> postSpectacle(@RequestBody SpectacleAddition ajoutSpectacle){
 		spectacleService.addSpectacle(ajoutSpectacle.getSpectacle(), ajoutSpectacle.getCategoryId());
 		return new ResponseEntity<SpectacleAddition>(ajoutSpectacle,HttpStatus.OK);
+	}
+	
+	//http://localhost:8888/spring-boot-spectacle-ws/spectacle-api/spectacle/category
+		//en mode POST
+		//avec comme contenu invisible de la partie body de la requete HTTP
+		//des données json { "id" : null , "title" : "categorieXyz"  } 
+	@PostMapping(value="/category" )
+	Category postCategory(@RequestBody Category c){
+			spectacleService.addCategory(c);
+			return c;
 	}
 	
 	

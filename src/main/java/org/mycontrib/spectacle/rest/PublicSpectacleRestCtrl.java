@@ -44,6 +44,8 @@ public class PublicSpectacleRestCtrl {
 		
 	}
 	
+	
+	
 	//sera appelé en HTTP / GET avec l' URL suivante:
 	// http://localhost:8888/spring-boot-spectacle-ws/spectacle-api/public/spectacle?categoryId=1
 	@GetMapping(value="" )
